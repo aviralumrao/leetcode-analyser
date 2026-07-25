@@ -1,9 +1,22 @@
+import Navbar from "@/components/Navbar";
+import SearchBar from "@/components/SearchBar";
+import ProfileCard from "@/components/ProfileCard";
+import StatsCard from "@/components/StatsCard";
+
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <h1 className="text-5xl font-bold">
-        LeetCode Analyser 🚀
-      </h1>
-    </main>
+    <>
+      <Navbar />
+
+      <main className="">
+        <SearchBar/>
+
+        <ProfileCard />
+
+        <div>
+          <StatsCard />
+        </div>
+      </main>
+    </>
   );
 }
