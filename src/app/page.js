@@ -1,3 +1,5 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
 import ProfileCard from "@/components/ProfileCard";
