@@ -6,13 +6,24 @@ import ProfileCard from "@/components/ProfileCard";
 import StatsCard from "@/components/StatsCard";
 import Footer from "@/components/Footer";
 import { useState } from "react";
+import { getUser } from "@/lib/api";
 
 export default function Home() {
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
 
-  function handleSearch() {
+  async function handleSearch() {
     console.log(username);
+
+    if (!username.trim()) {
+      setError("Please enter a username.");
+      return;
+    }
+    setLoading(true);
+    setError("");
+    setProfile(null);
+    const data = await getUser(username);
+    setProfile(data);
   }
   return (
     <>
