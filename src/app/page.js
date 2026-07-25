@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
 import ProfileCard from "@/components/ProfileCard";
 import StatsCard from "@/components/StatsCard";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
           <StatsCard />
         </div>
       </main>
+      <Footer />
     </>
   );
 }
