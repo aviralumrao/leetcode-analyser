@@ -1,4 +1,4 @@
-const BASE_URL = "https://alfa-leetcode-api.onrender.com/";
+const BASE_URL = "https://alfa-leetcode-api.onrender.com";
 
 export async function getUser(username) {
   const response = await fetch(`${BASE_URL}/${username}`);
