@@ -11,20 +11,30 @@ import { getUser } from "@/lib/api";
 export default function Home() {
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
+  const [profile, setProfile] = useState(null);
+  const [error, setError] = useState("");
 
   async function handleSearch() {
-    console.log(username);
-
     if (!username.trim()) {
       setError("Please enter a username.");
       return;
     }
+
     setLoading(true);
     setError("");
     setProfile(null);
-    const data = await getUser(username);
-    setProfile(data);
+
+    try {
+      const data = await getUser(username);
+      setProfile(data);
+    } catch (err) {
+      setError("Unable to fetch user data.");
+      setProfile(null);
+    } finally {
+      setLoading(false);
+    }
   }
+
   return (
     <>
       <Navbar />
@@ -36,7 +46,7 @@ export default function Home() {
           handleSearch={handleSearch}
           loading={loading}
         />
-        <ProfileCard />
+        <ProfileCard profile={profile} />
 
         <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <StatsCard />

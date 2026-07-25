@@ -7,5 +7,6 @@ export async function getUser(username) {
     throw new Error("User not found");
   }
 
+  console.log(username);
   return response.json();
 }
