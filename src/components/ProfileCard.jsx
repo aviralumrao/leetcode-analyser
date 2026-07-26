@@ -9,7 +9,7 @@ export default function ProfileCard({ profile }) {
   }
 
   return (
-    <div className="mt-10 rounded-xl border bg-white p-6 shadow">
+    <div className="mt-10 rounded-xl border bg-gray p-6 shadow">
       <div className="flex items-center gap-5">
         <img
           src={profile.avatar}
@@ -18,9 +18,9 @@ export default function ProfileCard({ profile }) {
 
         <div>
           <h2 className="text-2xl font-bold">{profile.username}</h2>
-          <p className="text-gray-600">Rank: {profile.ranking}</p>
-          <p className="text-gray-600">Country: {profile.country}</p>
-          <p className="text-gray-600">Reputation: {profile.reputation}</p>
+          <p className="text-white">Rank: {profile.ranking}</p>
+          <p className="text-white">Country: {profile.country}</p>
+          <p className="text-white">Reputation: {profile.reputation}</p>
         </div>
       </div>
     </div>
