@@ -62,6 +62,9 @@ export default function Home() {
         {profile && (
           <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             <StatsCard title="Total Solved" value={profile.totalSolved} />
+            <StatsCard title= "Easy" value={profile.easySolved} />
+            <StatsCard title= "Medium" value={profile.mediumSolved} />
+            <StatsCard title= "Hard" value={profile.hardSolved} />
             <StatsCard title="Ranking" value={profile.ranking} />
             <StatsCard title="Contest Rating" value={contest.contestRating} />
             <StatsCard title="Badges" value={badges.badgesCount} />
