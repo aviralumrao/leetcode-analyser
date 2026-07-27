@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import CompareSearch from "@/components/CompareSearch";
 import ComparisonTable from "@/components/ComparisonTable";
 import ComparisonBarChart from "@/components/ComparisonBarChart";
-import { getUser } from "@/lib/api";
+import { getUser, getUser_contest, getUser_badges } from "@/lib/api";
 
 export default function ComparePage() {
   const [user1, setUser1] = useState("");
@@ -13,11 +13,6 @@ export default function ComparePage() {
 
   const [profile1, setProfile1] = useState(null);
   const [profile2, setProfile2] = useState(null);
-
-  const [contest1, setProfileContest1] = useState(null);
-  const [badges1, setProfileBadges1] = useState(null);
-  const [contest2, setProfileContest2] = useState(null);
-  const [badges2, setProfileBadges2] = useState(null);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -45,25 +40,24 @@ export default function ComparePage() {
         getUser_badges(user2),
       ]);
 
-      setProfile1({ username: user1, data: data1 });
-      setProfileContest1({ username: user1, contest: contestData1 });
-      setProfileBadges1({ username: user1, badges: badgesData1 });
+      setProfile1({
+        username: user1,
+        ...data1,
+        contestRating: contestData1.contestRating,
+        badgesCount: badgesData1.badgesCount,
+      });
 
-      setProfile2({ username: user2, data: data2 });
-      setProfileContest2({ username: user2, contest: contestData2 });
-      setProfileBadges2({ username: user2, badges: badgesData2 });
-
-      console.log(data1, contestData1, badgesData1);
-      console.log(data2, contestData2, badgesData2);
+      setProfile2({
+        username: user2,
+        ...data2,
+        contestRating: contestData2.contestRating,
+        badgesCount: badgesData2.badgesCount,
+      });
     } catch (err) {
       console.error(err);
       setError("Failed to fetch user data.");
       setProfile1(null);
       setProfile2(null);
-      setProfileContest1(null);
-      setProfileContest2(null);
-      setProfileBadges1(null);
-      setProfileBadges2(null);
     } finally {
       setLoading(false);
     }
@@ -85,10 +79,13 @@ export default function ComparePage() {
             loading={loading}
           />
 
+          {error && (
+            <p className="mb-4 text-center text-red-400">{error}</p>
+          )}
+
           {profile1 && profile2 && (
             <>
               <ComparisonTable profile1={profile1} profile2={profile2} />
-
               <ComparisonBarChart profile1={profile1} profile2={profile2} />
             </>
           )}

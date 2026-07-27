@@ -45,14 +45,14 @@ export default function ComparisonTable({ profile1, profile2 }) {
 
           <tr>
             <td className="p-3 font-medium text-neutral-100">Badges</td>
-            <td>{badgesData1.badgesCount}</td>
-            <td>{badgesData2.badgesCount}</td>
+            <td>{profile1.badgesCount}</td>
+            <td>{profile2.badgesCount}</td>
           </tr>
 
           <tr>
             <td className="p-3 font-medium text-neutral-100">Contest Rating</td>
-            <td>{contestData1.contestRating}</td>
-            <td>{contestData2.contestRating}</td>
+            <td>{profile1.contestRating}</td>
+            <td>{profile2.contestRating}</td>
           </tr>
         </tbody>
       </table>
