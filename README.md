@@ -1,39 +1,91 @@
+# LeetCode Analyser
 
-=======
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+LeetCode Analyser is a modern dashboard built with Next.js that lets you inspect a LeetCode user's profile, view key stats, and compare two users side by side.
 
-## Getting Started
+## What this project does
 
-First, run the development server:
+This app helps users quickly understand a LeetCode account by showing:
+
+- profile details such as username, rank, country, and reputation
+- solved problem counts
+- difficulty breakdown with a visual chart
+- contest-related stats
+- badge count
+- a compare mode for viewing two users together
+
+## Tech stack
+
+This project uses:
+
+- Next.js for the frontend and app routing
+- React for UI components
+- Tailwind CSS for styling
+- Recharts for the difficulty chart
+- lucide-react for icons
+- Axios and native fetch-based helpers for API calls
+
+## How it works
+
+1. The user enters a LeetCode username in the search bar.
+2. The app sends requests to the LeetCode API service.
+3. The returned data is fetched for:
+   - profile info
+   - contest stats
+   - badges
+4. The UI renders the information as cards and charts.
+5. On the compare page, two usernames can be queried at the same time and displayed side by side.
+
+## How to use it
+
+### Prerequisites
+
+Make sure you have Node.js installed on your machine.
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Usage flow
 
-## Learn More
+- Open the homepage
+- Enter a valid LeetCode username
+- Click Search
+- View the profile summary and stats
+- Visit the Compare Users page to compare two accounts
 
-To learn more about Next.js, take a look at the following resources:
+## Project structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+src/
+  app/              # Next.js pages and layouts
+  components/       # Reusable UI components
+  lib/              # API helper functions
+  utils/            # Helper utilities
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## API note
 
-## Deploy on Vercel
+The project uses a public LeetCode API endpoint to fetch profile, contest, and badge data. If the API service is unavailable or rate-limited, some data may fail to load.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Future improvements
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
->>>>>>> c2f6af8 (Initial commit from Create Next App)
+Possible next steps for this project include:
+
+- adding more detailed performance graphs
+- showing recent contest history
+- improving error handling and loading states
+- adding dark/light theme toggling
