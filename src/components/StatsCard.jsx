@@ -1,10 +1,13 @@
 export default function StatsCard({ title, value }) {
   return (
-    <div className="p-4">
-      <h3 className="text-sm font-semibold uppercase tracking-wide text-amber-50">
+    <div className="rounded-xl border bg-gray-800 p-6 shadow text-center">
+      <h2 className="text-3xl font-bold">
+        {value}
+      </h2>
+
+      <p className="mt-2 text-white-500">
         {title}
-      </h3>
-      <p className="mt-2 text-amber-100">{value}</p>
+      </p>
     </div>
   );
 }

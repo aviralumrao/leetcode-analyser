@@ -5,8 +5,10 @@ import SearchBar from "@/components/SearchBar";
 import ProfileCard from "@/components/ProfileCard";
 import StatsCard from "@/components/StatsCard";
 import Footer from "@/components/Footer";
+import DifficultyPieChart from "@/components/DifficultyPieChart";
 import { useState } from "react";
 import { getUser, getUser_contest, getUser_badges } from "@/lib/api";
+
 
 export default function Home() {
   const [username, setUsername] = useState("");
@@ -60,15 +62,20 @@ export default function Home() {
         <ProfileCard profile={profile} />
 
         {profile && (
-          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <StatsCard title="Total Solved" value={profile.totalSolved} />
-            <StatsCard title= "Easy" value={profile.easySolved} />
-            <StatsCard title= "Medium" value={profile.mediumSolved} />
-            <StatsCard title= "Hard" value={profile.hardSolved} />
-            <StatsCard title="Ranking" value={profile.ranking} />
-            <StatsCard title="Contest Rating" value={contest.contestRating} />
-            <StatsCard title="Badges" value={badges.badgesCount} />
-          </div>
+          <>
+            <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+              <StatsCard title="Total Solved" value={profile.totalSolved} />
+              <StatsCard title="Easy" value={profile.easySolved} />
+              <StatsCard title="Medium" value={profile.mediumSolved} />
+              <StatsCard title="Hard" value={profile.hardSolved} />
+              <StatsCard title="Ranking" value={profile.ranking} />
+              <StatsCard title="Contest Rating" value={contest.contestRating} />
+              <StatsCard title="Badges" value={badges.badgesCount} />
+            </div>
+            <div>
+              <DifficultyPieChart profile={profile} />
+            </div>
+          </>
         )}
       </main>
       <Footer />
