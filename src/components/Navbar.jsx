@@ -1,8 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isComparePage = pathname === "/compare";
+
   return (
     <nav className="sticky top-0 z-50 border-b border-white/10 bg-neutral-950/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
@@ -15,9 +19,9 @@ export default function Navbar() {
           </div>
         </a>
 
-        <Link href="/compare">
+        <Link href={isComparePage ? "/" : "/compare"}>
           <button className="rounded-full border border-blue-500/30 bg-blue-600/90 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-500">
-            Compare Users
+            {isComparePage ? "Check Profile" : "Compare Users"}
           </button>
         </Link>
       </div>
