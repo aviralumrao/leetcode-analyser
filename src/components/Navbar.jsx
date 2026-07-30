@@ -7,9 +7,6 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 border-b border-white/10 bg-neutral-950/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <a href="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-blue-500/30 bg-blue-500/10 text-sm font-semibold text-blue-200">
-            LA
-          </div>
           <div>
             <p className="text-base font-semibold tracking-tight text-neutral-100">
               LeetCode Analyser

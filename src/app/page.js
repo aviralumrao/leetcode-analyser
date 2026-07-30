@@ -8,7 +8,12 @@ import Footer from "@/components/Footer";
 import DifficultyPieChart from "@/components/DifficultyPieChart";
 import BadgeCard from "@/components/BadgeCard";
 import { useState } from "react";
-import { getUser, getUser_contest, getUser_badges } from "@/lib/api";
+import {
+  getUser,
+  getUser_contest,
+  getUser_badges,
+  getInfo,
+} from "@/lib/api";
 
 export default function Home() {
   const [username, setUsername] = useState("");
@@ -17,6 +22,7 @@ export default function Home() {
   const [contest, setProfileContest] = useState(null);
   const [badges, setProfileBadges] = useState(null);
   const [error, setError] = useState("");
+  const [info, setInfo] = useState(null);
 
   async function handleSearch() {
     if (!username.trim()) {
@@ -24,6 +30,7 @@ export default function Home() {
       return;
     }
 
+    setInfo(null);
     setLoading(true);
     setError("");
     setProfile(null);
@@ -31,12 +38,15 @@ export default function Home() {
     setProfileBadges(null);
 
     try {
+      const info_data = await getInfo(username);
       const user_data = await getUser(username);
       const user_contest_data = await getUser_contest(username);
       const user_badges_data = await getUser_badges(username);
+      setInfo(info_data);
       setProfile(user_data);
       setProfileContest(user_contest_data);
       setProfileBadges(user_badges_data);
+      console.log(info_data);
       console.log(user_data);
       console.log(user_contest_data);
       console.log(user_badges_data);
@@ -66,7 +76,7 @@ export default function Home() {
           </div>
         )}
 
-        <ProfileCard profile={profile} />
+        <ProfileCard profile={info} />
 
         {profile && (
           <>
