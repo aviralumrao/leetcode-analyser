@@ -6,6 +6,7 @@ import ProfileCard from "@/components/ProfileCard";
 import StatsCard from "@/components/StatsCard";
 import Footer from "@/components/Footer";
 import DifficultyPieChart from "@/components/DifficultyPieChart";
+import BadgeCard from "@/components/BadgeCard";
 import { useState } from "react";
 import { getUser, getUser_contest, getUser_badges } from "@/lib/api";
 
@@ -110,7 +111,16 @@ export default function Home() {
                 <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-neutral-400">
                   Badges
                 </h3>
-                <StatsCard title="Badges" value={badges.badgesCount} />
+                <div className="space-y-3">
+                  <StatsCard title="Total Badges" value={badges.badgesCount} />
+                  {badges.badges.map((badge) => (
+                    <BadgeCard
+                      key={badge.id}
+                      icon={badge.icon}
+                      name={badge.displayName}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
 
