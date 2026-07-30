@@ -9,7 +9,6 @@ import DifficultyPieChart from "@/components/DifficultyPieChart";
 import { useState } from "react";
 import { getUser, getUser_contest, getUser_badges } from "@/lib/api";
 
-
 export default function Home() {
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
@@ -52,9 +51,7 @@ export default function Home() {
     <>
       <Navbar />
 
-      <main className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-       
-
+      <main className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         <SearchBar
           username={username}
           setUsername={setUsername}
@@ -72,17 +69,52 @@ export default function Home() {
 
         {profile && (
           <>
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-              <StatsCard title="Total Solved" value={profile.totalSolved} />
-              <StatsCard title="Easy" value={profile.easySolved} />
-              <StatsCard title="Medium" value={profile.mediumSolved} />
-              <StatsCard title="Hard" value={profile.hardSolved} />
-              <StatsCard title="Ranking" value={profile.ranking} />
-              <StatsCard title="Contest Rating" value={contest.contestRating} />
-              <StatsCard title="Badges" value={badges.badgesCount} />
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              <div className="rounded-2xl border border-white/10 bg-neutral-900/70 p-4">
+                <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-neutral-400">
+                  Questions Solving Data
+                </h3>
+                <div className="space-y-3">
+                  <StatsCard title="Total Solved" value={profile.totalSolved} />
+                  <StatsCard title="Easy" value={profile.easySolved} />
+                  <StatsCard title="Medium" value={profile.mediumSolved} />
+                  <StatsCard title="Hard" value={profile.hardSolved} />
+                </div>
+              </div>
 
+              <div className="rounded-2xl border border-white/10 bg-neutral-900/70 p-4">
+                <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-neutral-400">
+                  Contests
+                </h3>
+                <div className="space-y-3">
+                  <StatsCard
+                    title="Contest Attended"
+                    value={contest.contestAttend}
+                  />
+                  <StatsCard
+                    title="Contest Rating"
+                    value={contest.contestRating}
+                  />
+                  <StatsCard
+                    title="Contest Global Ranking"
+                    value={contest.contestGLobalRating}
+                  />
+                  <StatsCard
+                    title="Contest Badges"
+                    value={contest.contestBadges}
+                  />
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-neutral-900/70 p-4">
+                <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-neutral-400">
+                  Badges
+                </h3>
+                <StatsCard title="Badges" value={badges.badgesCount} />
+              </div>
             </div>
-            <div className="rounded-[24px] border border-white/10 bg-neutral-900/70 p-4 sm:p-6">
+
+            <div className="rounded-2xl border border-white/10 bg-neutral-900/70 p-4 sm:p-6">
               <DifficultyPieChart profile={profile} />
             </div>
           </>
