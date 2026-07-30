@@ -66,30 +66,37 @@ export default function ComparePage() {
   return (
     <>
       <Navbar />
-      <main>
-        <div className="mx-auto max-w-6xl">
-          <h1 className="mb-8 text-center text-4xl font-bold">Compare Users</h1>
+      <main className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+        <section className="rounded-[28px] border border-white/10 bg-neutral-900/70 p-6 sm:p-8">
+          <div className="max-w-2xl">
+            {" "}
+            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              Put two profiles side by side and see the difference.
+            </h1>
+          </div>
+        </section>
 
-          <CompareSearch
-            user1={user1}
-            setUser1={setUser1}
-            user2={user2}
-            setUser2={setUser2}
-            handleCompare={handleCompare}
-            loading={loading}
-          />
+        <CompareSearch
+          user1={user1}
+          setUser1={setUser1}
+          user2={user2}
+          setUser2={setUser2}
+          handleCompare={handleCompare}
+          loading={loading}
+        />
 
-          {error && (
-            <p className="mb-4 text-center text-red-400">{error}</p>
-          )}
+        {error && (
+          <div className="rounded-2xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+            {error}
+          </div>
+        )}
 
-          {profile1 && profile2 && (
-            <>
-              <ComparisonTable profile1={profile1} profile2={profile2} />
-              <ComparisonBarChart profile1={profile1} profile2={profile2} />
-            </>
-          )}
-        </div>
+        {profile1 && profile2 && (
+          <>
+            <ComparisonTable profile1={profile1} profile2={profile2} />
+            <ComparisonBarChart profile1={profile1} profile2={profile2} />
+          </>
+        )}
       </main>
     </>
   );

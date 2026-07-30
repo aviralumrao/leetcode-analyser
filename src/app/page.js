@@ -52,18 +52,27 @@ export default function Home() {
     <>
       <Navbar />
 
-      <main className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 sm:px-6 lg:px-8">
+      <main className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+       
+
         <SearchBar
           username={username}
           setUsername={setUsername}
           handleSearch={handleSearch}
           loading={loading}
         />
+
+        {error && (
+          <div className="rounded-2xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+            {error}
+          </div>
+        )}
+
         <ProfileCard profile={profile} />
 
         {profile && (
           <>
-            <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               <StatsCard title="Total Solved" value={profile.totalSolved} />
               <StatsCard title="Easy" value={profile.easySolved} />
               <StatsCard title="Medium" value={profile.mediumSolved} />
@@ -71,8 +80,9 @@ export default function Home() {
               <StatsCard title="Ranking" value={profile.ranking} />
               <StatsCard title="Contest Rating" value={contest.contestRating} />
               <StatsCard title="Badges" value={badges.badgesCount} />
+
             </div>
-            <div>
+            <div className="rounded-[24px] border border-white/10 bg-neutral-900/70 p-4 sm:p-6">
               <DifficultyPieChart profile={profile} />
             </div>
           </>
